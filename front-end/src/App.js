@@ -28,7 +28,6 @@ const App = () => {
 
   const handleAdd = async formData => {
     setBtnLoading(true);
-
     try {
       const res = await fetch(process.env.REACT_APP_FETCH_URL + "/user", {
         method: "POST",
@@ -41,7 +40,6 @@ const App = () => {
           occupation: formData.occupation
         })
       });
-
       if (res.status !== 200 && res.status !== 201) {
         throw new Error("Adding user failed");
       }
@@ -51,7 +49,27 @@ const App = () => {
     } catch (err) {
       console.log(err);
     }
+    setBtnLoading(false);
+  };
 
+  const handleDelete = async userId => {
+    setBtnLoading(true);
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_FETCH_URL + "/user/" + userId,
+        {
+          method: "DELETE"
+        }
+      );
+      if (res.status !== 200) {
+        throw new Error("Deleting user failed");
+      }
+      await res.json();
+      const updatedUsers = users.filter(user => user._id !== userId);
+      setUsers(updatedUsers);
+    } catch (err) {
+      console.log(err); ///
+    }
     setBtnLoading(false);
   };
 
@@ -73,9 +91,11 @@ const App = () => {
               {users.map(user => (
                 <User
                   key={user._id}
+                  id={user._id}
                   name={user.name}
                   age={user.age}
                   occupation={user.occupation}
+                  handleDelete={handleDelete}
                 />
               ))}
             </>

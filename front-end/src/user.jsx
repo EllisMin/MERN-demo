@@ -1,13 +1,17 @@
 import React from "react";
 import CustomButton from "./custom-button";
 
-const User = ({ name, age, occupation, attr }) => {
+const User = ({ id, name, age, occupation, attr, handleDelete }) => {
   return (
     <li className={`${attr ? "attr" : ""} user`}>
       <span>{name}</span>
       <span>{age}</span>
       <span>{occupation}</span>
-      {!attr && <CustomButton remove>X</CustomButton>}
+      {!attr && (
+        <CustomButton remove onClick={() => handleDelete(id)}>
+          X
+        </CustomButton>
+      )}
     </li>
   );
 };

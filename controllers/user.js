@@ -38,7 +38,7 @@ exports.postUser = async (req, res, next) => {
 };
 
 exports.deleteUser = async (req, res, next) => {
-  const userId = req.params.menuId;
+  const userId = req.params.userId;
   try {
     const user = await User.findById(userId);
     if (!user) {
@@ -46,7 +46,7 @@ exports.deleteUser = async (req, res, next) => {
       error.statusCode = 404;
       throw error;
     }
-    await Menu.findByIdAndRemove(menuId);
+    await User.findByIdAndRemove(userId);
     res.status(200).json({ message: "User removed" });
   } catch (err) {
     if (!err.statusCode) {
