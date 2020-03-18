@@ -34,6 +34,7 @@ const UserAddForm = ({ loading, handleAdd }) => {
   const handleSubmit = e => {
     e.preventDefault();
     handleAdd(userForm);
+    setUserForm(USER_FORM);
   };
 
   return (
