@@ -1,10 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import User from "./user";
 import UserAddForm from "./user-add-form";
 import "./App.css";
 
 const App = () => {
   const [btnLoading, setBtnLoading] = useState(false);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    try {
+      const res = await fetch(process.env.REACT_APP_FETCH_URL + "/user", {
+        method: "GET"
+      });
+      if (res.status !== 200) {
+        throw new Error("Fetching user failed");
+      }
+      const resData = await res.json();
+      setUsers(resData.users);
+    } catch (err) {}
+  };
 
   const handleAdd = async formData => {
     setBtnLoading(true);
@@ -26,11 +44,9 @@ const App = () => {
         throw new Error("Adding user failed");
       }
       const resData = await res.json();
-  
+
       // TODO: Update state
-    } catch (err) {
-      console.log(err); ///
-    }
+    } catch (err) {}
 
     setBtnLoading(false);
   };
@@ -46,8 +62,20 @@ const App = () => {
         <h2>Users:</h2>
         <ul className="user-list">
           <User name={"Name"} age={"Age"} occupation={"Occupation"} attr />
-          <User name="Nick" age={3} occupation="cook" />
-          <User name="Nick" age={7} occupation="cook" />
+          {users.length > 0 ? (
+            <>
+              {users.map(user => (
+                <User
+                  key={user._id}
+                  name={user.name}
+                  age={user.age}
+                  occupation={user.occupation}
+                />
+              ))}
+            </>
+          ) : (
+            <h2>Loading users..</h2>
+          )}
         </ul>
       </main>
     </div>
