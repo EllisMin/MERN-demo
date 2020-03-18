@@ -21,6 +21,8 @@ li.user {
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+  opacity: 0.1;
+  animation: fadeOut 500ms forwards ease-in;
 }
 
 li.user:hover {
@@ -49,8 +51,6 @@ li.attr:hover {
   text-align: center;
   margin: 0 0.3rem;
 }
-
-
 
 /* Buttons */
 .btn-custom {
@@ -83,4 +83,10 @@ li.attr:hover {
   background: #ccc;
   color: #888;
   border: #ccc;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 1;
+  }
 }

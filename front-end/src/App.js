@@ -44,8 +44,8 @@ const App = () => {
         throw new Error("Adding user failed");
       }
       const resData = await res.json();
-
-      // TODO: Update state
+      const updatedUsers = [...users, resData.user];
+      setUsers(updatedUsers);
     } catch (err) {}
 
     setBtnLoading(false);
@@ -55,6 +55,7 @@ const App = () => {
     <div className="App">
       <header>
         <h1>MERN Stack App Demo</h1>
+        <hr/>
       </header>
       <main>
         <h2>Add User:</h2>
