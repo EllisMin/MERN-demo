@@ -21,7 +21,9 @@ const App = () => {
       }
       const resData = await res.json();
       setUsers(resData.users);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleAdd = async formData => {
@@ -46,7 +48,9 @@ const App = () => {
       const resData = await res.json();
       const updatedUsers = [...users, resData.user];
       setUsers(updatedUsers);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
 
     setBtnLoading(false);
   };
@@ -55,11 +59,12 @@ const App = () => {
     <div className="App">
       <header>
         <h1>MERN Stack App Demo</h1>
-        <hr/>
+        <hr />
       </header>
       <main>
         <h2>Add User:</h2>
         <UserAddForm loading={btnLoading} handleAdd={handleAdd} />
+        <hr />
         <h2>Users:</h2>
         <ul className="user-list">
           <User name={"Name"} age={"Age"} occupation={"Occupation"} attr />

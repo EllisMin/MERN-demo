@@ -1,6 +1,7 @@
 .App {
-  max-width: 550px;
-  padding: 2rem;
+  max-width: 468px;
+
+  padding: 1rem;
   background: #eee;
   margin: auto;
   font-family: sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
@@ -8,18 +9,19 @@
 
 .App .user-list {
   list-style: none;
+  padding: 1rem 0 1rem 2rem;
   display: flex;
   flex-direction: column;
-  background: lightgrey;
-  padding: 2rem;
+  background: #ddd;
+  text-align: left;
 }
 
 /* User */
 li.user {
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  justify-content: space-between;
   padding: 1rem;
   opacity: 0.1;
   animation: fadeOut 500ms forwards ease-in;
@@ -43,13 +45,14 @@ li.attr:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 /* Input */
 .input-custom {
   padding: 0.5rem;
   text-align: center;
-  margin: 0 0.3rem;
+  margin: 0.5rem 0.3rem;
 }
 
 /* Buttons */
@@ -63,7 +66,7 @@ li.attr:hover {
 }
 .btn-delete {
   position: absolute;
-  left: -50px;
+  left: -20px;
 }
 .btn-custom:hover {
   color: #ffd700;
