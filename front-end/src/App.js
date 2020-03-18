@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import User from "./user";
 import UserAddForm from "./user-add-form";
 import "./App.css";
 
 const App = () => {
+  const [btnLoading, setBtnLoading] = useState(false);
+
+  const handleAdd = () => {
+    setBtnLoading(true);
+
+    setBtnLoading(false);
+  };
+
   return (
     <div className="App">
       <header>
@@ -11,7 +19,7 @@ const App = () => {
       </header>
       <main>
         <h2>Add User:</h2>
-        <UserAddForm />
+        <UserAddForm loading={btnLoading} />
         <h2>Users:</h2>
         <ul className="user-list">
           <User name={"Name"} age={"Age"} occupation={"Occupation"} attr />

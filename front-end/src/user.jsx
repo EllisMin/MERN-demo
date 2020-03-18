@@ -1,4 +1,5 @@
 import React from "react";
+import CustomButton from "./custom-button";
 
 const User = ({ name, age, occupation, attr }) => {
   return (
@@ -6,7 +7,7 @@ const User = ({ name, age, occupation, attr }) => {
       <div>{name}</div>
       <div>{age}</div>
       <div>{occupation}</div>
-      {!attr && <button className="btn-custom btn-delete">Delete</button>}
+      {!attr && <CustomButton remove>Delete</CustomButton>}
     </li>
   );
 };

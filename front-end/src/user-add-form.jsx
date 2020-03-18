@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CustomButton from "./custom-button";
 
 const FormInput = ({ ...otherProps }) => {
   return (
@@ -30,8 +31,12 @@ const UserAddForm = () => {
     setUserForm(updatedForm);
   };
 
+  const handleAdd = e => {
+    e.preventDefault();
+  };
+
   return (
-    <form className="form-add-user">
+    <form className="form-add-user" onSubmit={e => handleAdd(e)}>
       <FormInput
         id="name"
         name="name"
@@ -53,7 +58,7 @@ const UserAddForm = () => {
         value={userForm["occupation"]}
         onChange={handleChange}
       />
-      <button className="btn-custom">Add</button>
+      <CustomButton>Add</CustomButton>
     </form>
   );
 };
