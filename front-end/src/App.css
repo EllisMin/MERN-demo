@@ -68,7 +68,7 @@ li.attr:hover {
 .btn-custom:hover {
   color: #ffd700;
   background: #333;
-  border: none;
+  border-color: transparent;
 }
 .btn-custom:disabled {
   cursor: not-allowed;

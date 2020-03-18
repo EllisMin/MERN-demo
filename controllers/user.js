@@ -17,13 +17,16 @@ exports.getUsers = async (req, res, next) => {
 
 exports.postUser = async (req, res, next) => {
   try {
+    console.log(req.body);
+    
+
     const user = new User({
       name: req.body.name,
       age: req.body.age,
       occupation: req.body.occupation
     });
 
-    await menu.save(); // Save in db
+    await user.save(); // Save in db
 
     res.status(201).json({
       message: "User created",

@@ -20,7 +20,7 @@ const USER_FORM = {
   occupation: ""
 };
 
-const UserAddForm = () => {
+const UserAddForm = ({ loading, handleAdd }) => {
   const [userForm, setUserForm] = useState(USER_FORM);
 
   const handleChange = (input, value) => {
@@ -31,12 +31,13 @@ const UserAddForm = () => {
     setUserForm(updatedForm);
   };
 
-  const handleAdd = e => {
+  const handleSubmit = e => {
     e.preventDefault();
+    handleAdd(userForm);
   };
 
   return (
-    <form className="form-add-user" onSubmit={e => handleAdd(e)}>
+    <form className="form-add-user" onSubmit={e => handleSubmit(e)}>
       <FormInput
         id="name"
         name="name"
@@ -58,7 +59,9 @@ const UserAddForm = () => {
         value={userForm["occupation"]}
         onChange={handleChange}
       />
-      <CustomButton>Add</CustomButton>
+      <CustomButton loading={loading} type="submit">
+        Add
+      </CustomButton>
     </form>
   );
 };

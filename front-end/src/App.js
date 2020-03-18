@@ -6,8 +6,31 @@ import "./App.css";
 const App = () => {
   const [btnLoading, setBtnLoading] = useState(false);
 
-  const handleAdd = () => {
+  const handleAdd = async formData => {
     setBtnLoading(true);
+
+    try {
+      const res = await fetch(process.env.REACT_APP_FETCH_URL + "/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          age: formData.age,
+          occupation: formData.occupation
+        })
+      });
+
+      if (res.status !== 200 && res.status !== 201) {
+        throw new Error("Adding user failed");
+      }
+      const resData = await res.json();
+  
+      // TODO: Update state
+    } catch (err) {
+      console.log(err); ///
+    }
 
     setBtnLoading(false);
   };
@@ -19,7 +42,7 @@ const App = () => {
       </header>
       <main>
         <h2>Add User:</h2>
-        <UserAddForm loading={btnLoading} />
+        <UserAddForm loading={btnLoading} handleAdd={handleAdd} />
         <h2>Users:</h2>
         <ul className="user-list">
           <User name={"Name"} age={"Age"} occupation={"Occupation"} attr />
