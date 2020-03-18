@@ -14,7 +14,6 @@ const userSchema = new Schema(
     occupation: {
       type: String,
       required: true,
-      default: "unemployed"
     }
   },
   { timestamps: true }

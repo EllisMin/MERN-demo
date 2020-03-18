@@ -99,9 +99,7 @@ const App = () => {
                 />
               ))}
             </>
-          ) : (
-            <h2>Loading users..</h2>
-          )}
+          ) : null}
         </ul>
       </main>
     </div>

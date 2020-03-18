@@ -17,10 +17,12 @@ exports.getUsers = async (req, res, next) => {
 
 exports.postUser = async (req, res, next) => {
   try {
+    let occupation = req.body.occupation;
+    if (!occupation) occupation = "unemployed";
     const user = new User({
       name: req.body.name,
       age: req.body.age,
-      occupation: req.body.occupation
+      occupation: occupation
     });
 
     await user.save(); // Save in db
