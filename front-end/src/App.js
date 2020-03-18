@@ -46,7 +46,7 @@ const App = () => {
         throw new Error("Adding user failed");
       }
       const resData = await res.json();
-      const updatedUsers = [...users, resData.user];
+      const updatedUsers = [resData.user, ...users];
       setUsers(updatedUsers);
     } catch (err) {
       console.log(err);
